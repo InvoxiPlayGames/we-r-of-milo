@@ -31,6 +31,17 @@ namespace we_r_of_milo
             }
         }
 
+        public static void PrintFiles()
+        {
+            lock (openFiles)
+            {
+                foreach (int fd in openFiles.Keys)
+                {
+                    Console.WriteLine(" {0}: {1}", fd, openFiles[fd].Name);
+                }
+            }
+        }
+
         public static FileStream? GetFile(int fd)
         {
             if (!openFiles.ContainsKey(fd))

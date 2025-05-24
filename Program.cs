@@ -19,6 +19,8 @@ while (running)
             case ConsoleKey.I:
                 Console.WriteLine("-- Clients:");
                 server1.PrintClients();
+                Console.WriteLine("-- Files:");
+                FileManager.PrintFiles();
                 Console.WriteLine("--");
                 break;
             case ConsoleKey.S:

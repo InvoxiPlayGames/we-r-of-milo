@@ -10,9 +10,10 @@ For 01-09-2010 Wii build of band3.
 
 * [x] kVersion
 * [x] kOpenFile
-* [x] kReadFile (possibly incorrect)
+* [x] kReadFile
 * [x] kCloseFile
-* [ ] kPrint (not! response behaviour needs checking)
+* [x] kPrint
+* [ ] kCacheResource (stubbed)
 * [x] kStackTrace (stubbed, but prints the stack)
 
 ### Unimplemented
@@ -26,7 +27,6 @@ For 01-09-2010 Wii build of band3.
 * [ ] kCacheFile
 * [ ] kCompareFileTimes
 * [ ] kTerminate
-* [ ] kCacheResource
 * [ ] kPollKeyboard
 * [ ] kPollJoypad
 * [ ] kSendMessage
@@ -39,6 +39,13 @@ Holmes gMachineName = 127.0.0.1 (Bank 8) [IPG]
 06C989D8 0000000A
 3132372E 302E302E
 31000000 00000000
+```
+
+```
+Holmes Always Load Cached Milos [IPG]
+04442A98 38600001
+00C7A2C1 00000001
+00C7A22C 00000001
 ```
 
 ```

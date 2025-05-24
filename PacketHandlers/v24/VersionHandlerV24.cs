@@ -39,6 +39,15 @@ namespace we_r_of_milo.PacketHandlers.v24
             Console.WriteLine(" platform: 0x" + platform.ToString("X2"));
             Console.WriteLine(" gfxMode: 0x" + gfxMode.ToString("X2"));
 
+            if (!Client._hasInit)
+            {
+                Platform plat = (Platform)platform;
+                if (plat == Platform.kPlatformWii)
+                    Client._clientName = "Wii (" + Client._clientName + ")";
+                else
+                    Client._clientName = hostName + " " + plat.ToString();
+            }
+
             stream.WriteByte((byte)HolmesPacketsV24.kVersion);
             stream.WriteInt32LE(24); // v24
             stream.WriteLengthPrefixedString(Encoding.UTF8, "serverName"); // serverName

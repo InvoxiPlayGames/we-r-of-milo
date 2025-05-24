@@ -16,10 +16,12 @@ namespace we_r_of_milo
     {
         public string _clientName;
         public bool _hasInit = false;
+        public int _activePrintCount = 0;
         public DateTime _lastPacket;
         public TcpClient _client;
         public HolmesVersion _version = HolmesVersion.kHolmesUnknown;
         public Dictionary<int, IPacketHandler> handlers = new Dictionary<int, IPacketHandler>();
+        public List<int> _openFiles = new List<int>();
 
         public ConnectedClient(TcpClient client) {
             _client = client;

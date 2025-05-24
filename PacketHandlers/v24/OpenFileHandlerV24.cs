@@ -35,6 +35,7 @@ namespace we_r_of_milo.PacketHandlers.v24
             {
                 res = (int)FileManager.GetFile(fd)!.Length;
                 Console.WriteLine(" opened with fd: {0}, length: {1}", fd, res);
+                Client._openFiles.Add(fd);
             }
 
             stream.WriteByte((byte)HolmesPacketsV24.kOpenFile);

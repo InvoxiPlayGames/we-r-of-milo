@@ -19,7 +19,8 @@ namespace we_r_of_milo.PacketHandlers.v24
             int fd = stream.ReadInt32LE();
 
             FileManager.CloseFile(fd);
-            
+            Client._openFiles.Remove(fd);
+
             // No response?
             //stream.WriteByte((byte)HolmesPacketsV24.kCloseFile);
         }

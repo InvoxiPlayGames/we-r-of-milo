@@ -20,8 +20,13 @@ namespace we_r_of_milo.PacketHandlers.v24
             Console.WriteLine("--");
             Console.WriteLine(line);
             Console.WriteLine("--");
-            // this response isn't quite correct - it seems the game has logic going on for a certain amount of prints..?
-            stream.WriteByte((byte)HolmesPacketsV24.kPrint);
+            Client._activePrintCount++;
+            if (Client._activePrintCount > 2)
+            {
+                stream.WriteByte((byte)HolmesPacketsV24.kPrint);
+                stream.WriteByte((byte)0);
+                Client._activePrintCount--;
+            }
         }
     }
 }

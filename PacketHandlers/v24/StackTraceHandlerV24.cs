@@ -16,6 +16,13 @@ namespace we_r_of_milo.PacketHandlers.v24
 
         public void HandlePacket(Stream stream)
         {
+            // assume that because the game has crashed, we should release all file handles
+            foreach(int fd in Client._openFiles)
+            {
+                FileManager.CloseFile(fd);
+            }
+            Client._openFiles.Clear();
+
             string mapFile = stream.ReadLengthPrefixedString(Encoding.UTF8);
             Console.WriteLine(" mapFile: " + mapFile);
             int numStack = stream.ReadInt32LE();
@@ -27,6 +34,7 @@ namespace we_r_of_milo.PacketHandlers.v24
             stream.WriteByte((byte)HolmesPacketsV24.kStackTrace);
             // passing a blank stack trace allows the game to report it itself
             // but this string actually lets you provide any arbitrary info to display on-screen and in logs
+            string coolAsHell = "   ^\r\n  / \\\r\n /   \\\r\n/     \\\r\n|  |  |\r\n|  |  |\r\n\\  \\  /\r\n \\  \\/\r\n /\\  \\\r\n/  \\  \\\r\n|  |  |\r\n|  |  |\r\n\\     /\r\n \\   /\r\n  \\ /\r\n   v";
             stream.WriteLengthPrefixedString(Encoding.UTF8, "");
         }
     }
