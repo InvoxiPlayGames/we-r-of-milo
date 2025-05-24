@@ -18,6 +18,7 @@ namespace we_r_of_milo.PacketHandlers.v24
         }
 
         public ConnectedClient Client { get; set; }
+
         public VersionHandlerV24(ConnectedClient _client)
         {
             Client = _client;
@@ -41,7 +42,10 @@ namespace we_r_of_milo.PacketHandlers.v24
             stream.WriteByte((byte)HolmesPacketsV24.kVersion);
             stream.WriteInt32LE(24); // v24
             stream.WriteLengthPrefixedString(Encoding.UTF8, "serverName"); // serverName
-            stream.WriteLengthPrefixedString(Encoding.UTF8, "."); // fileRoot
+            if (!Client._hasInit)
+                stream.WriteLengthPrefixedString(Encoding.UTF8, "."); // fileRoot
+
+            Client._hasInit = true;
         }
     }
 }

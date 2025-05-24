@@ -36,7 +36,11 @@ namespace we_r_of_milo.PacketHandlers.v63
             Console.WriteLine(" rndApi: 0x" + rndApi.ToString("X2"));
             // write an error back for now
             stream.WriteByte((byte)HolmesPacketsV63.kVersion);
-            stream.WriteInt32LE(-1);
+            stream.WriteInt32LE(63);
+            stream.WriteLengthPrefixedString(Encoding.UTF8, hmxBranchIdentifier);
+            stream.WriteLengthPrefixedString(Encoding.UTF8, hmxProjectName);
+            stream.WriteLengthPrefixedString(Encoding.UTF8, "we-r-of-milo"); // serverName
+            stream.WriteLengthPrefixedString(Encoding.UTF8, "we-r-of-fileroot"); // fileRoot
         }
     }
 }

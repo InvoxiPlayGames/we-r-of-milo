@@ -15,6 +15,7 @@ namespace we_r_of_milo
     internal class ConnectedClient
     {
         public string _clientName;
+        public bool _hasInit = false;
         public DateTime _lastPacket;
         public TcpClient _client;
         public HolmesVersion _version = HolmesVersion.kHolmesUnknown;
@@ -31,7 +32,7 @@ namespace we_r_of_milo
             NetworkStream str = _client.GetStream();
             int packetType = str.ReadByte();
             // first packet on version connections
-            if (packetType == 0 && _version == HolmesVersion.kHolmesUnknown)
+            if (packetType == 0)
             {
                 int packetVersion = str.ReadInt32LE();
                 if (packetVersion == 15)
@@ -105,6 +106,7 @@ namespace we_r_of_milo
             handlers[(int)HolmesPacketsV24.kReadFile] = new ReadFileHandlerV24(this);
             handlers[(int)HolmesPacketsV24.kCloseFile] = new CloseFileHandlerV24(this);
             handlers[(int)HolmesPacketsV24.kPrint] = new PrintHandlerV24(this);
+            handlers[(int)HolmesPacketsV24.kCacheResource] = new CacheResourceHandlerV24(this);
             handlers[(int)HolmesPacketsV24.kStackTrace] = new StackTraceHandlerV24(this);
         }
 
@@ -116,6 +118,7 @@ namespace we_r_of_milo
         private void RegisterHandlersV63()
         {
             handlers[(int)HolmesPacketsV63.kVersion] = new VersionHandlerV63(this);
+            handlers[(int)HolmesPacketsV63.kStackTrace] = new StackTraceHandlerV63(this);
         }
 
         public void Disconnect() {
