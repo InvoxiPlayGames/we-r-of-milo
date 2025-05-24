@@ -17,6 +17,8 @@ namespace we_r_of_milo
             FileInfo? fi = null;
             try
             {
+                if (Environment.OSVersion.Platform != PlatformID.Win32NT)
+                    path = path.Replace('\\', '/');
                 path = path.Replace("..", "(..)");
                 Console.WriteLine(" statpath: " + fileRoot + path);
                 fi = new FileInfo(fileRoot + path);
@@ -33,6 +35,8 @@ namespace we_r_of_milo
         {
             try
             {
+                if (Environment.OSVersion.Platform != PlatformID.Win32NT)
+                    path = path.Replace('\\', '/');
                 path = path.Replace("..", "(..)");
                 FileStream fs = File.OpenRead(fileRoot + path);
                 int fd = totalNumFiles++;
