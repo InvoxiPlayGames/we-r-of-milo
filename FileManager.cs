@@ -12,6 +12,23 @@ namespace we_r_of_milo
         static int totalNumFiles = 0;
         static Dictionary<int, FileStream> openFiles = new Dictionary<int, FileStream>();
 
+        public static FileInfo? GetFileStat(string path)
+        {
+            FileInfo? fi = null;
+            try
+            {
+                path = path.Replace("..", "(..)");
+                Console.WriteLine(" statpath: " + fileRoot + path);
+                fi = new FileInfo(fileRoot + path);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to stat file: " + ex);
+                return null;
+            }
+            return fi;
+        }
+
         public static int OpenFileReadOnly(string path)
         {
             try

@@ -4,14 +4,16 @@ Unthreaded Holmes server implementation for Milo.
 
 For 01-09-2010 Wii build of band3.
 
-## Implementation Progress (v24)
+## Opcode Implementation Progress (v24)
 
 ### Implemented
 
 * [x] kVersion
+* [x] kGetStat
 * [x] kOpenFile
 * [x] kReadFile
 * [x] kCloseFile
+* [ ] kEnumerate (stubbed)
 * [x] kPrint
 * [ ] kCacheResource (stubbed)
 * [x] kStackTrace (stubbed, but prints the stack)
@@ -19,11 +21,9 @@ For 01-09-2010 Wii build of band3.
 ### Unimplemented
 
 * [ ] kSysExec
-* [ ] kGetStat
 * [ ] kWriteFile
 * [ ] kMkDir
 * [ ] kDelete
-* [ ] kEnumerate
 * [ ] kCacheFile
 * [ ] kCompareFileTimes
 * [ ] kTerminate
@@ -32,7 +32,16 @@ For 01-09-2010 Wii build of band3.
 * [ ] kSendMessage
 * [ ] kTruncateFile
 
-## 01-09-2010 Gecko Codes
+## Feature Implementation Progress
+
+* [ ] Stack Trace Parsing
+* [ ] External Log Windows
+* [ ] Game Successfully Boots
+* [ ] Resource Caching (.bmp/.png/.milo)
+
+## Extras
+
+### 01-09-2010 Gecko Codes
 
 ```
 Holmes gMachineName = 127.0.0.1 (Bank 8) [IPG]

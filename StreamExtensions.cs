@@ -243,6 +243,17 @@ static class StreamExtensions
     }
 
     /// <summary>
+    /// Write a signed 64-bit little-endian integer to the stream.
+    /// </summary>
+    /// <param name="s"></param>
+    /// <param name="int64">The integer to write.</param>
+    public static void WriteInt64LE(this Stream s, long int64)
+    {
+        byte[] tmp = BitConverter.GetBytes(int64);
+        s.Write(tmp, 0, 8);
+    }
+
+    /// <summary>
     /// Read an unsigned 32-bit Big-endian integer from the stream.
     /// </summary>
     /// <param name="s"></param>
